@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="438" height="395" tilewidth="1" tileheight="1" infinite="0" nextobjectid="1">
+ <imagelayer name="sprites">
+  <image source="Possible tilesets and characters/sprites.png" width="438" height="395"/>
+ </imagelayer>
+</map>
