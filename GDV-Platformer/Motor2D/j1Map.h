@@ -33,6 +33,7 @@ struct MapLayer
 struct TileSet
 {
 	// TODO 7: Create a method that receives a tile id and returns it's Rect
+	SDL_Rect GetTileRect(int id)const;
 
 	p2SString			name;
 	int					firstgid;
@@ -49,6 +50,16 @@ struct TileSet
 	int					offset_y;
 };
 
+struct ImageLayer
+{
+	SDL_Rect GetImageRect()const;
+
+	p2SString name;
+	uint width;
+	uint height;
+	SDL_Texture* tex;
+	
+};
 enum MapTypes
 {
 	MAPTYPE_UNKNOWN = 0,
@@ -59,14 +70,15 @@ enum MapTypes
 // ----------------------------------------------------
 struct MapData
 {
-	int					width;
-	int					height;
-	int					tile_width;
-	int					tile_height;
-	SDL_Color			background_color;
-	MapTypes			type;
-	p2List<TileSet*>	tilesets;
-	p2List<MapLayer*>	layers;
+	uint					width;
+	uint					height;
+	uint					tile_width;
+	uint					tile_height;
+	SDL_Color				background_color;
+	MapTypes				type;
+	p2List<TileSet*>		tilesets;
+	p2List<MapLayer*>		layers;
+	p2List<ImageLayer*>		images;
 };
 
 // ----------------------------------------------------
@@ -92,14 +104,24 @@ public:
 	bool Load(const char* path);
 
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
+	iPoint MapToWorld(int x, int y)const;
+	iPoint WorldToMap(int x, int y)const;
+
+	int level = 0;
+
+	TileSet* GetTilesetFromTileId(int id)const;
+
 
 private:
 
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
-	// TODO 3: Create a method that loads a single laye
-	// bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadImageBackground(pugi::xml_node& node, ImageLayer* imgLayer);
+	bool LoadMapProperties(pugi::xml_node &node);
+
+
 
 public:
 
