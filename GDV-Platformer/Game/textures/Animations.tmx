@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="5670" height="2500" tilewidth="1" tileheight="1" infinite="0" nextobjectid="23">
+ <imagelayer name="spritesheet" locked="1">
+  <image source="aniamtions.png" width="5670" height="5670"/>
+ </imagelayer>
+ <objectgroup name="idle" locked="1">
+  <object id="1" x="0" y="0" width="567" height="556"/>
+  <object id="2" x="567" y="0" width="567" height="556"/>
+  <object id="3" x="1134" y="0" width="567" height="556"/>
+  <object id="4" x="1701" y="0" width="567" height="556"/>
+  <object id="5" x="2268" y="0" width="567" height="556"/>
+  <object id="6" x="2835" y="0" width="567" height="556"/>
+  <object id="7" x="3402" y="0" width="567" height="556"/>
+  <object id="8" x="3969" y="0" width="567" height="556"/>
+  <object id="9" x="4536" y="0" width="567" height="556"/>
+  <object id="10" x="5103" y="0" width="567" height="556"/>
+ </objectgroup>
+ <objectgroup name="run">
+  <object id="12" x="0" y="556" width="567" height="556"/>
+  <object id="14" x="5103" y="556" width="567" height="556"/>
+  <object id="15" x="4536" y="556" width="567" height="556"/>
+  <object id="16" x="3969" y="556" width="567" height="556"/>
+  <object id="17" x="3402" y="556" width="567" height="556"/>
+  <object id="18" x="2835" y="556" width="567" height="556"/>
+  <object id="19" x="2268" y="556" width="567" height="556"/>
+  <object id="20" x="1701" y="556" width="567" height="556"/>
+  <object id="21" x="1134" y="556" width="567" height="556"/>
+  <object id="22" x="567" y="556" width="567" height="556"/>
+ </objectgroup>
+</map>
