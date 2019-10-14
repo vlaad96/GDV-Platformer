@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="Tileset.tsx"/>
  <tileset firstgid="21" source="ObjectTiles.tsx"/>
  <imagelayer id="2" name="Background" locked="1" offsetx="2" offsety="-24">
-  <image source="../../../Possible Tilesets and Characters/Graveyard map/png/BG.png" width="2000" height="1143"/>
+  <image source="BG.png" width="2000" height="1143"/>
  </imagelayer>
  <layer id="5" name="Objects" width="120" height="35" locked="1">
   <data>
