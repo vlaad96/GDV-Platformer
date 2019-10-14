@@ -34,7 +34,7 @@ void j1Map::Draw()
 	//Background draw
 	for (int i = 0; i < data.images.count(); ++i)
 	{
-		App->render->Blit(data.images[i]->texture, data.backgroundOffset.x*data.parallaxSpeed, data.backgroundOffset.x * data.parallaxSpeed,data.backgroundOffset.y, &data.images[i]->GetImageRect());
+		//App->render->Blit(data.images[i]->texture, data.backgroundOffset.x*data.parallaxSpeed, data.backgroundOffset.x * data.parallaxSpeed,data.backgroundOffset.y, &data.images[i]->GetImageRect());
 	}
 
 	//Map draw
@@ -452,7 +452,7 @@ bool j1Map::LoadBackgroundImg(pugi::xml_node& node, ImageLayer* imagelayer)
 	imagelayer->name = node.attribute("name").as_string();
 	imagelayer->width = node.child("image").attribute("width").as_int();
 	imagelayer->height = node.child("image").attribute("height").as_int();
-	imagelayer->tex = App->tex->Load(PATH(folder.GetString(), node.child("image").attribute("source").as_string()));
+	imagelayer->texture = App->tex->Load(PATH(folder.GetString(), node.child("image").attribute("source").as_string()));
 	data.backgroundOffset.x = node.attribute("offsetx").as_float();
 	data.backgroundOffset.y = node.attribute("offsety").as_float();
 	return ret;
@@ -476,7 +476,7 @@ bool j1Map::LoadMapProperties(pugi::xml_node& node)
 
 		if (name == "Starting_Pos_Y")
 		{
-			data.{.y = iterator.attribute("value").as_float();
+			data.playerStartingPos.y = iterator.attribute("value").as_float();
 		}
 	}
 

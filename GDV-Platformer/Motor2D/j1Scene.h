@@ -32,7 +32,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	bool changeScene()const;
+	SDL_Texture* endScreen;
+	
+	uint time;
+
 
 private:
 
