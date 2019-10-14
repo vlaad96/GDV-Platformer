@@ -28,44 +28,38 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
-	if(map_loaded == false)
+	if (map_loaded == false)
 		return;
 
-	//draw background
+	//Background draw
 	for (int i = 0; i < data.images.count(); ++i)
 	{
-		//App->render->Blit(data.images[i]->tex,
-		//	&data.images[i]->GetImageRect());
+		App->render->Blit(data.images[i]->texture, data.backgroundOffset.x*data.parallaxSpeed, data.backgroundOffset.x * data.parallaxSpeed,data.backgroundOffset.y, &data.images[i]->GetImageRect());
 	}
 
-	//Tile draw
-
-	MapLayer* layer;
+	//Map draw
+	MapLayer* layer;// = this->data.layers.start->data;
 
 	for (int i = 0; i < data.tilesets.count(); ++i)
 	{
 		layer = data.layers[i];
-
 		for (int y = 0; y < data.height; ++y)
 		{
 			for (int x = 0; x < data.width; ++x)
 			{
-				int tileId = layer->Get(x, y);
-
-				if (tileId > 0)
+				int tile_id = layer->Get(x, y);
+				if (tile_id > 0)
 				{
-					TileSet* tileset = GetTilesetFromTileId(tileId);
-
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
 					if (tileset != nullptr)
 					{
-						SDL_Rect rect = tileset->GetTileRect(tileId);
+						SDL_Rect r = tileset->GetTileRect(tile_id);
 						iPoint pos = MapToWorld(x, y);
 
-						App->render->Blit(tileset->texture, pos.x, pos.y, &rect);
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 					}
 				}
 			}
-			
 		}
 	}
 }
@@ -128,8 +122,8 @@ SDL_Rect TileSet::GetTileRect(int id)const
 	SDL_Rect rect;
 	rect.w = tile_width;
 	rect.h = tile_height;
-	rect.x = margin + ((rect.w + spacing)*(relativeId%num_tiles_width));
-	rect.y = margin + ((rect.h + spacing)*(relativeId/num_tiles_height));
+	rect.x = margin + ((rect.w + spacing) * (relativeId % num_tiles_width));
+	rect.y = margin + ((rect.h + spacing) * (relativeId / num_tiles_height));
 
 	return rect;
 }
@@ -237,7 +231,7 @@ bool j1Map::Load(const char* file_name)
 	{
 		ImageLayer* imageLay = new ImageLayer();
 
-		ret = LoadImageBackgorund(imgLayer, imageLay);
+		ret = LoadBackgroundImg(imgLayer, imageLay);
 
 		if (ret == true)
 			data.images.add(imageLay);
@@ -286,7 +280,7 @@ bool j1Map::Load(const char* file_name)
 	}
 
 	//Load Properties ----------------------------
-	LoadPropiertiesOfMap(map_file);
+	LoadMapProperties(map_file);
 
 	map_loaded = ret;
 
@@ -429,6 +423,62 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	layer->height = node.attribute("height").as_uint();
 	pugi::xml_node layerData = node.child("data");
 
-	if(layerData)
+	if (layerData == NULL)
+	{
+		LOG("Error parsing map xml file: Cannot find 'layer/data' tag.");
+		ret = false;
+		RELEASE(layer);
+	}
+	else
+	{
+		layer->data = new uint[layer->width*layer->height];
+		memset(layer->data, 0, layer->width*layer->height);
 
+		int i = 0;
+		for (pugi::xml_node tile = layerData.child("tile"); tile; tile = tile.next_sibling("tile"))
+		{
+			layer->data[i++] = tile.attribute("gid").as_int(0);
+		}
+	}
+
+	return ret;
+
+}
+
+bool j1Map::LoadBackgroundImg(pugi::xml_node& node, ImageLayer* imagelayer)
+{
+	bool ret = true;
+
+	imagelayer->name = node.attribute("name").as_string();
+	imagelayer->width = node.child("image").attribute("width").as_int();
+	imagelayer->height = node.child("image").attribute("height").as_int();
+	imagelayer->tex = App->tex->Load(PATH(folder.GetString(), node.child("image").attribute("source").as_string()));
+	data.backgroundOffset.x = node.attribute("offsetx").as_float();
+	data.backgroundOffset.y = node.attribute("offsety").as_float();
+	return ret;
+}
+
+bool j1Map::LoadMapProperties(pugi::xml_node& node)
+{
+	for (pugi::xml_node iterator = node.child("map").child("properties").child("property"); iterator != nullptr; iterator = iterator.next_sibling())
+	{
+		p2SString name = iterator.attribute("name").as_string();
+
+		if (name == "Parallax_Speed")
+		{
+			data.parallaxSpeed = iterator.attribute("value").as_float();
+		}
+
+		if (name == "Starting_Pos_X")
+		{
+			data.playerStartingPos.x = iterator.attribute("value").as_float();
+		}
+
+		if (name == "Starting_Pos_Y")
+		{
+			data.{.y = iterator.attribute("value").as_float();
+		}
+	}
+
+	return true;
 }

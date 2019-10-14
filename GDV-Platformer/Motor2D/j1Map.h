@@ -6,6 +6,10 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
+struct Properties
+{
+	bool Draw;
+};
 
 struct MapLayer
 {
@@ -16,23 +20,24 @@ struct MapLayer
 
 	uint* data;
 
-	MapLayer() :data(NULL){}
+	MapLayer() : data(NULL)
+	{}
 
-	~MapLayer() { RELEASE(data); }
+	~MapLayer()
+	{
+		RELEASE(data);
+	}
 
 	inline uint Get(int x, int y) const
 	{
 		return data[(y*width) + x];
 	}
-	
+
 };
-
-
 
 // ----------------------------------------------------
 struct TileSet
 {
-	// TODO 7: Create a method that receives a tile id and returns it's Rect
 	SDL_Rect GetTileRect(int id)const;
 
 	p2SString			name;
@@ -57,7 +62,7 @@ struct ImageLayer
 	p2SString name;
 	uint width;
 	uint height;
-	SDL_Texture* tex;
+	SDL_Texture* texture;
 	
 };
 enum MapTypes
@@ -75,10 +80,19 @@ struct MapData
 	uint					tile_width;
 	uint					tile_height;
 	SDL_Color				background_color;
+
 	MapTypes				type;
+
 	p2List<TileSet*>		tilesets;
 	p2List<MapLayer*>		layers;
 	p2List<ImageLayer*>		images;
+
+	fPoint					playerStartingPos;
+	fPoint					playerEndPoint;
+	float					parallaxSpeed;
+	uint					cameraVertLimit;
+	fPoint					backgroundOffset;
+
 };
 
 // ----------------------------------------------------
@@ -103,7 +117,6 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y)const;
 	iPoint WorldToMap(int x, int y)const;
 
@@ -118,7 +131,7 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
-	bool LoadImageBackground(pugi::xml_node& node, ImageLayer* imgLayer);
+	bool LoadBackgroundImg(pugi::xml_node& node, ImageLayer* imgLayer);
 	bool LoadMapProperties(pugi::xml_node &node);
 
 
@@ -126,11 +139,12 @@ private:
 public:
 
 	MapData data;
+	pugi::xml_document	map_file;
+	p2SString			folder;
 
 private:
 
-	pugi::xml_document	map_file;
-	p2SString			folder;
+	
 	bool				map_loaded;
 };
 
