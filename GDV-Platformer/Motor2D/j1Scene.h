@@ -32,7 +32,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool changeScene()const;
+
 private:
+
 };
 
 #endif // __j1SCENE_H__
