@@ -1,11 +1,12 @@
 #ifndef _J1COLLISION_H_
 #define _J1COLLISION_H_
 
-#define MAX_COLLIDERS 1000
+#define MAX_COLLIDERS 10000
 
 #include "SDL/include/SDL.h"
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
+#include "SDL/include/SDL_rect.h"
 
 enum COLLIDER_TYPE
 {
@@ -23,8 +24,8 @@ struct Collider
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 
-	Collider(SDL_Rect rect, COLLIDER_TYPE type) :
-		rect(rect),
+	Collider(SDL_Rect rectangle, COLLIDER_TYPE type) :
+		rect(rectangle),
 		type(type)
 	{}
 
@@ -40,6 +41,7 @@ struct Collider
 		rect.h = h;
 	}
 
+	bool CheckCollision(const SDL_Rect& r)const;
 };
 
 class j1Collision : public j1Module
@@ -54,9 +56,7 @@ public:
 	bool PostUpdate(float dt);
 	bool CleanUp();
 
-	bool CheckCollision(const SDL_Rect& r)const;
-
-	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
+	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type);
 	void DebugDraw();
 
 private:
