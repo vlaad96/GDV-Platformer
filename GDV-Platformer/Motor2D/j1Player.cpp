@@ -29,11 +29,14 @@ bool j1Player::Start()
 	bool ret = true;
 
 	graphics = App->tex->Load("textures/spritesheet.png");
+
+	return ret;
 }
 
 bool j1Player::PostUpdate()
 {
 	//Here goes the player control and drawing
+	return true;
 }
 
 //Save game state of the player
@@ -72,17 +75,17 @@ Animation* j1Player::LoadAnim(const char* path, const char* animation)
 		{
 			bAnim = true;
 			
-			uint x;
-			uint y;
-			uint h;
-			uint w;
+			int x;
+			int y;
+			int h;
+			int w;
 
 			for (pugi::xml_node sprite = objectGroup.child("object"); sprite; sprite = sprite.next_sibling("object"))
 			{
-				x = sprite.attribute("x").as_uint();
-				y = sprite.attribute("y").as_uint();
-				w = sprite.attribute("w").as_uint();
-				h = sprite.attribute("h").as_uint();
+				x = sprite.attribute("x").as_int();
+				y = sprite.attribute("y").as_int();
+				w = sprite.attribute("w").as_int();
+				h = sprite.attribute("h").as_int();
 
 				anim->PushBack({ x,y,w,h });
 			}
