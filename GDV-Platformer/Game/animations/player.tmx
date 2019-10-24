@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="850" height="1152" tilewidth="1" tileheight="1" infinite="0" nextlayerid="6" nextobjectid="23">
+ <imagelayer id="2" name="sprites" locked="1">
+  <image source="../textures/spritesheet.png" width="850" height="1152"/>
+ </imagelayer>
+ <objectgroup id="3" name="collider" locked="1">
+  <object id="1" x="10" y="8" width="75" height="121"/>
+ </objectgroup>
+ <objectgroup id="4" name="idleRight" locked="1">
+  <object id="2" x="0" y="1" width="85" height="128"/>
+  <object id="4" x="85" y="1" width="85" height="128"/>
+  <object id="5" x="170" y="1" width="85" height="128"/>
+  <object id="6" x="255" y="1" width="85" height="128"/>
+  <object id="7" x="340" y="1" width="85" height="128"/>
+  <object id="8" x="425" y="1" width="85" height="128"/>
+  <object id="9" x="510" y="1" width="85" height="128"/>
+  <object id="10" x="595" y="1" width="85" height="128"/>
+  <object id="11" x="680" y="1" width="85" height="128"/>
+  <object id="12" x="765" y="1" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="5" name="idleLeft">
+  <object id="13" x="0" y="129" width="85" height="128"/>
+  <object id="14" x="85" y="129" width="85" height="128"/>
+  <object id="15" x="170" y="129" width="85" height="128"/>
+  <object id="16" x="255" y="129" width="85" height="128"/>
+  <object id="17" x="340" y="129" width="85" height="128"/>
+  <object id="18" x="425" y="129" width="85" height="128"/>
+  <object id="19" x="510" y="129" width="85" height="128"/>
+  <object id="20" x="595" y="129" width="85" height="128"/>
+  <object id="21" x="680" y="129" width="85" height="128"/>
+  <object id="22" x="765" y="129" width="85" height="128"/>
+ </objectgroup>
+</map>
