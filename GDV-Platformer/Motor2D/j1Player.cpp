@@ -49,3 +49,48 @@ bool j1Player::Load(pugi::xml_node& data)
 {
 	return true;
 }
+
+Animation* j1Player::LoadAnim(const char* path, const char* animation)
+{
+	Animation* anim = new Animation();
+
+	bool bAnim;
+
+	pugi::xml_document animFile;
+	pugi::xml_parse_result res = animFile.load_file(path);
+
+	if (res == NULL)
+	{
+		LOG("Cannot load animation file");
+	}
+
+	pugi::xml_node objectGroup;
+	for (objectGroup = animFile.child("map").child("objectgroup"); objectGroup; objectGroup = objectGroup.next_sibling("objectgroup"))
+	{
+		p2SString name = objectGroup.attribute("name").as_string();
+		if (name == animation)
+		{
+			bAnim = true;
+			
+			uint x;
+			uint y;
+			uint h;
+			uint w;
+
+			for (pugi::xml_node sprite = objectGroup.child("object"); sprite; sprite = sprite.next_sibling("object"))
+			{
+				x = sprite.attribute("x").as_uint();
+				y = sprite.attribute("y").as_uint();
+				w = sprite.attribute("w").as_uint();
+				h = sprite.attribute("h").as_uint();
+
+				anim->PushBack({ x,y,w,h });
+			}
+		}
+	}
+
+	if (bAnim = true)
+		return anim;
+	else
+		return nullptr;
+}

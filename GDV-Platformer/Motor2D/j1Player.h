@@ -24,6 +24,9 @@ public:
 	bool Save(pugi::xml_node&)const;
 	bool Load(pugi::xml_node&);
 
+	//Load Animations
+	Animation* LoadAnim(const char* path, const char* animation);
+
 public:
 
 	Collider * collider;

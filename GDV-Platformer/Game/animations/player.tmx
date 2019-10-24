@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="850" height="1152" tilewidth="1" tileheight="1" infinite="0" nextlayerid="6" nextobjectid="23">
- <imagelayer id="2" name="sprites" locked="1">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="850" height="1152" tilewidth="1" tileheight="1" infinite="0" nextlayerid="13" nextobjectid="83">
+ <imagelayer id="12" name="sprites" locked="1">
   <image source="../textures/spritesheet.png" width="850" height="1152"/>
  </imagelayer>
- <objectgroup id="3" name="collider" locked="1">
+ <objectgroup id="3" name="collider" visible="0" locked="1">
   <object id="1" x="10" y="8" width="75" height="121"/>
  </objectgroup>
  <objectgroup id="4" name="idleRight" locked="1">
@@ -18,7 +18,7 @@
   <object id="11" x="680" y="1" width="85" height="128"/>
   <object id="12" x="765" y="1" width="85" height="128"/>
  </objectgroup>
- <objectgroup id="5" name="idleLeft">
+ <objectgroup id="5" name="idleLeft" locked="1">
   <object id="13" x="0" y="129" width="85" height="128"/>
   <object id="14" x="85" y="129" width="85" height="128"/>
   <object id="15" x="170" y="129" width="85" height="128"/>
@@ -29,5 +29,77 @@
   <object id="20" x="595" y="129" width="85" height="128"/>
   <object id="21" x="680" y="129" width="85" height="128"/>
   <object id="22" x="765" y="129" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="6" name="walkRight" locked="1">
+  <object id="23" x="0" y="257" width="85" height="128"/>
+  <object id="24" x="85" y="257" width="85" height="128"/>
+  <object id="25" x="170" y="257" width="85" height="128"/>
+  <object id="26" x="255" y="257" width="85" height="128"/>
+  <object id="27" x="340" y="257" width="85" height="128"/>
+  <object id="28" x="425" y="257" width="85" height="128"/>
+  <object id="29" x="510" y="257" width="85" height="128"/>
+  <object id="30" x="595" y="257" width="85" height="128"/>
+  <object id="31" x="680" y="257" width="85" height="128"/>
+  <object id="32" x="765" y="257" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="7" name="walkLeft" locked="1">
+  <object id="33" x="0" y="385" width="85" height="128"/>
+  <object id="34" x="85" y="385" width="85" height="128"/>
+  <object id="35" x="170" y="385" width="85" height="128"/>
+  <object id="36" x="255" y="385" width="85" height="128"/>
+  <object id="37" x="340" y="385" width="85" height="128"/>
+  <object id="38" x="425" y="385" width="85" height="128"/>
+  <object id="39" x="510" y="385" width="85" height="128"/>
+  <object id="40" x="595" y="385" width="85" height="128"/>
+  <object id="41" x="680" y="385" width="85" height="128"/>
+  <object id="42" x="765" y="385" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="8" name="jumpRight" locked="1">
+  <object id="43" x="0" y="513" width="85" height="128"/>
+  <object id="44" x="85" y="513" width="85" height="128"/>
+  <object id="45" x="170" y="513" width="85" height="128"/>
+  <object id="46" x="255" y="513" width="85" height="128"/>
+  <object id="47" x="340" y="513" width="85" height="128"/>
+  <object id="48" x="425" y="513" width="85" height="128"/>
+  <object id="49" x="510" y="513" width="85" height="128"/>
+  <object id="50" x="595" y="513" width="85" height="128"/>
+  <object id="51" x="680" y="513" width="85" height="128"/>
+  <object id="52" x="765" y="513" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="9" name="jumpLeft" locked="1">
+  <object id="53" x="0" y="641" width="85" height="128"/>
+  <object id="54" x="85" y="641" width="85" height="128"/>
+  <object id="55" x="170" y="641" width="85" height="128"/>
+  <object id="56" x="255" y="641" width="85" height="128"/>
+  <object id="57" x="340" y="641" width="85" height="128"/>
+  <object id="58" x="425" y="641" width="85" height="128"/>
+  <object id="59" x="510" y="641" width="85" height="128"/>
+  <object id="60" x="595" y="641" width="85" height="128"/>
+  <object id="61" x="680" y="641" width="85" height="128"/>
+  <object id="62" x="765" y="641" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="10" name="slideRight" locked="1">
+  <object id="63" x="0" y="769" width="85" height="128"/>
+  <object id="64" x="85" y="769" width="85" height="128"/>
+  <object id="65" x="170" y="769" width="85" height="128"/>
+  <object id="66" x="255" y="769" width="85" height="128"/>
+  <object id="67" x="340" y="769" width="85" height="128"/>
+  <object id="68" x="425" y="769" width="85" height="128"/>
+  <object id="69" x="510" y="769" width="85" height="128"/>
+  <object id="70" x="595" y="769" width="85" height="128"/>
+  <object id="71" x="680" y="769" width="85" height="128"/>
+  <object id="72" x="765" y="769" width="85" height="128"/>
+ </objectgroup>
+ <objectgroup id="11" name="slideLeft">
+  <object id="73" x="0" y="897" width="85" height="128"/>
+  <object id="74" x="85" y="897" width="85" height="128"/>
+  <object id="75" x="170" y="897" width="85" height="128"/>
+  <object id="76" x="255" y="897" width="85" height="128"/>
+  <object id="77" x="340" y="897" width="85" height="128"/>
+  <object id="78" x="425" y="897" width="85" height="128"/>
+  <object id="79" x="510" y="897" width="85" height="128"/>
+  <object id="80" x="595" y="897" width="85" height="128"/>
+  <object id="81" x="680" y="897" width="85" height="128"/>
+  <object id="82" x="765" y="897" width="85" height="128"/>
  </objectgroup>
 </map>
