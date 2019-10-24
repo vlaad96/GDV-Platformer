@@ -13,12 +13,12 @@ struct Properties
 
 struct MapLayer
 {
-	p2SString name;
+	p2SString				name;
 	
-	uint width;
-	uint height;
+	uint					width;
+	uint					height;
 
-	uint* data;
+	uint*					data;
 
 	MapLayer() : data(NULL)
 	{}
@@ -40,29 +40,29 @@ struct TileSet
 {
 	SDL_Rect GetTileRect(int id)const;
 
-	p2SString			name;
-	int					firstgid;
-	int					margin;
-	int					spacing;
-	int					tile_width;
-	int					tile_height;
-	SDL_Texture*		texture;
-	int					tex_width;
-	int					tex_height;
-	int					num_tiles_width;
-	int					num_tiles_height;
-	int					offset_x;
-	int					offset_y;
+	p2SString				name;
+	int						firstgid;
+	int						margin;
+	int						spacing;
+	int						tile_width;
+	int						tile_height;
+	SDL_Texture*			texture;
+	int						tex_width;
+	int						tex_height;
+	int						num_tiles_width;
+	int						num_tiles_height;
+	int						offset_x;
+	int						offset_y;
 };
 
 struct ImageLayer
 {
 	SDL_Rect GetImageRect()const;
 
-	p2SString name;
-	uint width;
-	uint height;
-	SDL_Texture* texture;
+	p2SString				name;
+	uint					width;
+	uint					height;
+	SDL_Texture*			texture;
 	
 };
 enum MapTypes
@@ -138,9 +138,11 @@ private:
 
 public:
 
-	MapData data;
+	MapData				data;
 	pugi::xml_document	map_file;
 	p2SString			folder;
+
+	int					offset = 0;
 
 private:
 
