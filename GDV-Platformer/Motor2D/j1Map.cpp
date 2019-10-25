@@ -28,9 +28,9 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
-	if (map_loaded == false)
+	//if (map_loaded == false)
 		LOG("Cannot load the map");
-		return;
+		//return;
 
 	//Background draw
 	for (int i = 0; i < data.images.count(); ++i)
@@ -43,7 +43,7 @@ void j1Map::Draw()
 
 	for (int i = 0; i < data.tilesets.count(); ++i)
 	{
-		layer = data.layers[i];
+		layer = data.layers[i];//data.layers[i] es un nullptr
 		for (int y = 0; y < data.height; ++y)
 		{
 			for (int x = 0; x < data.width; ++x)
@@ -228,7 +228,7 @@ bool j1Map::Load(const char* file_name)
 
 	// Load layer info ----------------------------------------------
 	pugi::xml_node imgLayer;
-	for (imgLayer = map_file.child("map").child("imgLayer"); imgLayer && ret; imgLayer = imgLayer.next_sibling("imgLayer"))
+	for (imgLayer = map_file.child("map").child("imagelayer"); imgLayer && ret; imgLayer = imgLayer.next_sibling("imagelayer"))
 	{
 		ImageLayer* imageLay = new ImageLayer();
 
