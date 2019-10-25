@@ -20,6 +20,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	frames = 0;
 	want_to_save = want_to_load = false;
 
+	load_game = "save_game.xml";
+	save_game = "save_game.xml";
+
 	input = new j1Input();
 	win = new j1Window();
 	render = new j1Render();
@@ -37,9 +40,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	AddModule(player);
 	AddModule(scene);
 	AddModule(col);
+	AddModule(player);
 
 	// render last to swap buffer
 	AddModule(render);

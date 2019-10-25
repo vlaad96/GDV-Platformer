@@ -29,12 +29,13 @@ bool j1Map::Awake(pugi::xml_node& config)
 void j1Map::Draw()
 {
 	if (map_loaded == false)
+		LOG("Cannot load the map");
 		return;
 
 	//Background draw
 	for (int i = 0; i < data.images.count(); ++i)
 	{
-		//App->render->Blit(data.images[i]->texture, data.backgroundOffset.x*data.parallaxSpeed, data.backgroundOffset.x * data.parallaxSpeed,data.backgroundOffset.y, &data.images[i]->GetImageRect());
+		App->render->Blit(data.images[i]->texture, data.backgroundOffset.x*data.parallaxSpeed, data.backgroundOffset.y, &data.images[i]->GetImageRect());
 	}
 
 	//Map draw
@@ -278,6 +279,9 @@ bool j1Map::Load(const char* file_name)
 			item_layer = item_layer->next;
 		}
 	}
+	//Player starting pos
+	//App->player->pos.x = data.playerStartingPos.x;
+	//App->player->pos.y = data.playerStartingPos.y;
 
 	//Load Properties ----------------------------
 	LoadMapProperties(map_file);

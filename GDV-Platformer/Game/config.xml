@@ -2,12 +2,12 @@
 
 <config>
   <app>
-    <title>Game Development Testbed</title>
+    <title>Walk through the graveyard</title>
     <organization>UPC</organization>
   </app>
-	
+
   <renderer>
-    <vsync value="false"/>
+    <vsync value="true"/>
   </renderer>
 
   <window>
@@ -25,5 +25,21 @@
   <map>
     <folder>maps/</folder>
   </map>
+
+  <scene>
+    <level1_name name="Level1.tmx"/>
+    <level2_name name="Level2.tmx"/>
+  </scene>
+
+  <player>
+    <position x="0" y="0"/>
+    <file_path>animations/player.tmx</file_path>
+    <textures>textures/spritesheet.png</textures>
+    <Collider x="10" y="8" width ="75" height="121"/>
+    <dynamics godmode="6.0f"/>
+    <margin collisionmargin="0"/>
+
+  </player>
+
 
 </config>

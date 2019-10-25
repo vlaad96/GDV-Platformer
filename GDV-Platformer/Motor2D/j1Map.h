@@ -19,6 +19,7 @@ struct MapLayer
 	uint height;
 
 	uint* data;
+	Properties* properties;
 
 	MapLayer() : data(NULL)
 	{}
@@ -55,7 +56,7 @@ struct TileSet
 	int					offset_y;
 };
 
-struct ImageLayer
+struct ImageLayer //For parallaax
 {
 	SDL_Rect GetImageRect()const;
 
@@ -90,7 +91,7 @@ struct MapData
 	fPoint					playerStartingPos;
 	fPoint					playerEndPoint;
 	float					parallaxSpeed;
-	uint					cameraVertLimit;
+	int						cameraVertLimit;
 	fPoint					backgroundOffset;
 
 };
@@ -138,9 +139,11 @@ private:
 
 public:
 
-	MapData data;
+	MapData				data;
 	pugi::xml_document	map_file;
 	p2SString			folder;
+
+	int					offset = 0;
 
 private:
 

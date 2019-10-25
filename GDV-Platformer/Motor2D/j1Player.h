@@ -31,6 +31,8 @@ public:
 
 	Collider * collider;
 
+	fPoint pos;
+
 public:
 
 	SDL_Texture *	graphics = nullptr;
